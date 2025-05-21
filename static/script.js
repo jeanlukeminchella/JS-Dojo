@@ -4,7 +4,7 @@ const logs = [];
 function printLogs(){
     document.getElementById("log").innerHTML="";
     for(i=0;i<logs.length;i++){
-        logs.push(logs[i];
+        logs.push(logs[i]);
         document.getElementById("log").innerHTML="<br>";
     }
 }

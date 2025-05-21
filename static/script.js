@@ -1,11 +1,12 @@
 
 
 function button1(){
-    document.getElementById("result").innerHTML="input is "+document.getElementById("inp1").value;
+    document.getElementById("result").innerHTML="input1 is "+document.getElementById("inp1").value+"<br>";
+    document.getElementById("result").innerHTML="input2 is "+document.getElementById("inp2").value;
     document.getElementById("result").innerHTML+="<br>";
     console.log("pressed");
     document.getElementById("result").innerHTML+="And the zigzag is ";
-    document.getElementById("result").innerHTML+=convert(document.getElementById("inp1").value);
+    document.getElementById("result").innerHTML+=convert(document.getElementById("inp1").value,document.getElementById("inp2").value);
     
 }
 

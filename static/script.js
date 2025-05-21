@@ -1,4 +1,13 @@
 
+const logs = [];
+
+function printLogs(){
+    document.getElementById("log").innerHTML="";
+    for(i=0;i<logs.length;i++){
+        logs.push(logs[i];
+        document.getElementById("log").innerHTML="<br>";
+    }
+}
 
 function button1(){
     document.getElementById("result").innerHTML="input1 is "+document.getElementById("inp1").value+"<br>";
@@ -17,9 +26,9 @@ var longestPalindrome = function(s) {
         let pallindromeBroken = false;
         // Test if i is the index of the middle of a palindrome (of odd length)
         for (j=0;j+i<s.length && !pallindromeBroken && j<=i;j++){
-            document.getElementById("log").innerHTML+="i is "+i+"<br>"
-            document.getElementById("log").innerHTML+="j is "+j+"<br>"
-            document.getElementById("log").innerHTML+="now testing odds <br>"
+            logs.push("i is "+i+"<br>");
+            logs.push("j is "+j+"<br>");
+            logs.push("now testing odds <br>");
             
             console.log();
             if (s[i-j]==s[i+j]){
@@ -29,9 +38,9 @@ var longestPalindrome = function(s) {
                     
                     maxPalindromeLength = 1+(2*j);
                     maxPalindrome = s.slice(i-j,i+j+1);
-                    document.getElementById("log").innerHTML+="<br>";
-                    document.getElementById("log").innerHTML+="new max pal "+maxPalindrome+"<br>";
-                    document.getElementById("log").innerHTML+="<br>";
+                    ;
+                    logs.push("new max pal "+maxPalindrome+"<br>");
+                    ;
                 };
             } else {
                 pallindromeBroken = true;
@@ -40,18 +49,18 @@ var longestPalindrome = function(s) {
         pallindromeBroken = false;
         // Test if i is the index of the left middle of a palindrome (of even length)
         for (j=1;j+i<s.length && !pallindromeBroken && j<=i;j++){
-            document.getElementById("log").innerHTML+="i is "+i+"<br>"
-            document.getElementById("log").innerHTML+="j is "+j+"<br>"
-            document.getElementById("log").innerHTML+="now testing evens <br>"
+            logs.push("i is "+i+"<br>");
+            logs.push("j is "+j+"<br>");
+            logs.push("now testing evens <br>");
             
             if (s[i-j+1]==s[i+j]){
                 if (maxPalindromeLength<(2*j))
                 {
                     maxPalindromeLength = (2*j);
                     maxPalindrome = s.slice(i-j+1,i+j+1);
-                    document.getElementById("log").innerHTML+="<br>";
-                    document.getElementById("log").innerHTML+="new max pal "+maxPalindrome+"<br>";
-                    document.getElementById("log").innerHTML+="<br>";
+                    ;
+                    logs.push("new max pal "+maxPalindrome+"<br>");
+                    ;
                 };
             } else {
                 pallindromeBroken = true;
@@ -60,7 +69,7 @@ var longestPalindrome = function(s) {
 
 
     }
-    console.log("max pall is "+maxPalindrome)
+    logs.push("max pall is "+maxPalindrome)
     return maxPalindrome;
 };
 
@@ -80,16 +89,16 @@ var convert = function(s, numRows) {
 
 
     // A block is one zig and one zag, the string down and the letters back up again
-    document.getElementById("log").innerHTML+=" numRows is "+numRows;
+    logs.push(" numRows is "+numRows);
     var maxNumberOfCharactersInBlocks = numRows+(numRows-2);
-    document.getElementById("log").innerHTML+=" maxNumberOfCharactersInBlocks is "+maxNumberOfCharactersInBlocks;
-    document.getElementById("log").innerHTML+="<br>"
+    logs.push(" maxNumberOfCharactersInBlocks is "+maxNumberOfCharactersInBlocks);
+    
     var numberOfCompleteBlocks = Math.floor(s.length / maxNumberOfCharactersInBlocks);
-    document.getElementById("log").innerHTML+=" numberOfCompleteBlocks is "+numberOfCompleteBlocks;
-    document.getElementById("log").innerHTML+="<br>"
+    logs.push(" numberOfCompleteBlocks is "+numberOfCompleteBlocks);
+    
     var columnsPerBlock = numRows-1
-    document.getElementById("log").innerHTML+=" columnsPerBlock is "+columnsPerBlock;
-    document.getElementById("log").innerHTML+="<br>"
+    logs.push(" columnsPerBlock is "+columnsPerBlock);
+    
     const columns = [];
     for (i=0;i<(numberOfCompleteBlocks+1)*columnsPerBlock;i++){
         var emptyColumn = [];
@@ -98,16 +107,16 @@ var convert = function(s, numRows) {
         }
         columns.push(emptyColumn);
     }
-    document.getElementById("log").innerHTML+=columns;
+    logs.push(columns);
 
 
     // Returns a tuple that represents the coordinates of a index in the string
     var assignCharacter = function(i){
         var blockIndex = Math.floor(i/maxNumberOfCharactersInBlocks);
-        document.getElementById("log").innerHTML+=" blockIndex is "+blockIndex+"<br>";
+        logs.push(" blockIndex is "+blockIndex+"<br>");
         console.log();
         var distanceFromStartOfBlock = i%maxNumberOfCharactersInBlocks;
-        document.getElementById("log").innerHTML+=" distanceFromStartOfBlock is "+distanceFromStartOfBlock+"<br>";
+        logs.push(" distanceFromStartOfBlock is "+distanceFromStartOfBlock+"<br>");
         var row = null;
         if (distanceFromStartOfBlock<numRows){
             var row = distanceFromStartOfBlock;
@@ -125,11 +134,11 @@ var convert = function(s, numRows) {
 
     for (i=0;i<s.length;i++){
         var coords = assignCharacter(i);
-        console.log(" i is "+i+" coords are "+coords);
-        console.log();
+        logs.push(" i is "+i+" coords are "+coords);
+        logs.push("");
         columns[coords[1]][coords[0]] = s[i];
     }
-    console.log(columns);
+    logs.push(columns);
 
 
     var result = "";
@@ -141,6 +150,7 @@ var convert = function(s, numRows) {
             }
         }
     }
+    printLogs();
     return result;
 
 
